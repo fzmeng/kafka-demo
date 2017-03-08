@@ -18,8 +18,12 @@ public class KafkaProducerExample {
     {
         Properties props = getConfig();
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
+        String topic="slavetest",key,value;
         for (int i = 0; i < 1000; i++) {
-            producer.send(new ProducerRecord<String, String>("slavetest", "success"+i,i+"yes"));
+            key = "key"+i;
+            value="value"+i;
+            System.out.println("TOPIC: slavetest;发送KEY："+key+";Value:"+value);
+            producer.send(new ProducerRecord<String, String>(topic, key,value));
             try {
                 Thread.sleep(1000);
             }
